@@ -1,1 +1,1 @@
-A basic introduction to shell basics.
+A gentle introduction to shell basics.
