@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Writes to a file indefinitely.
+
+for (( ; ; ))
+do
+  echo "I am alive!" >> /tmp/my_process
+  sleep 2
+done
