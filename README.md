@@ -1,1 +1,1 @@
-This repository contains basic commands of shell basics, from navigation to manipulating files and directories.
+This repository contains the magic that is :rainbow:DevOps:rainbow:
