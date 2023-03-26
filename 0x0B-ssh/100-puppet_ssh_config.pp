@@ -6,7 +6,7 @@ file { '/root/.ssh/config':
   owner  => 'ubuntu',
   group  => 'ubuntu',
   content => "
-  35.153.232.94
+  Host 35.153.232.94
   IdentityFile ~/.ssh/school
   PasswordAuthentication no
 ",
