@@ -1,0 +1,10 @@
+# Add the provided public key to the server
+
+# Connect to the server using ssh with the ubuntu user
+ssh ubuntu@35.153.232.94
+
+# Add the public key to the authorized_keys file
+mkdir -p ~/.ssh
+echo "PROVIDED_PUBLIC_KEY" >> ~/.ssh/authorized_keys
+
+* The -p option tells mkdir to create any necessary parent directories along the path as well. So, if the .ssh directory doesn't exist, the -p option ensures that both the .ssh directory and its parent directory (i.e., your home directory) are created.
