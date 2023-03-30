@@ -1,10 +1,23 @@
 #!/usr/bin/env bash
-# Script that installs Nginx server, redirects /redirect_me and customizes 404 not found
+# installs nginx and configures it on a remote server for redirection and customizes 404 not found
 
-sudo apt-get -y update
-sudo apt-get -y install nginx
-sudo ufw allow 'Nginx HTTP'
-echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/404.html
-newlines="\\\terror_page 404 /404.html;\n\tlocation = /404.html {\n\t\troot /usr/share/nginx/html;\n\t\tinternal;\n\t}"
-sudo sed -i "27i $newlines" /etc/nginx/sites-available/default
-sudo service nginx restart
+nginx_install_and_configure() {
+    sudo apt-get -y update
+    sudo apt-get -y install nginx
+    sudo chown -R "$USER":"$USER" /var/www/html/
+    echo "Hello World!" > /var/www/html/index.html
+    sudo chown -R "$USER":"$USER" /etc/nginx/sites-available/
+    redirect="\\\trewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;"
+    sudo sed -i "26i $redirect" /etc/nginx/sites-available/default
+
+    echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/404.html
+    line="\\\terror_page 404 /404.html;\n\tlocation = /404.html {\n\t\troot /usr/share/nginx/html;\n\t\tinternal;\n\t}"
+    sudo sed -i "27i $line" /etc/nginx/sites-available/default
+
+    if [[ $(pgrep nginx) ]]; then
+	    sudo nginx -s reload
+    else
+	    sudo service nginx start
+    fi
+}
+nginx_install_and_configure
