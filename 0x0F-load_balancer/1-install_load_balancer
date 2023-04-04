@@ -21,4 +21,3 @@ sed -i 's/#ENABLED=0/ENABLED=1/' /etc/default/haproxy
 
 # Restart HAProxy service
 systemctl restart haproxy.service
-
