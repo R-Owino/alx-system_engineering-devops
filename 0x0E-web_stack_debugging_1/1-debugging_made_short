@@ -5,7 +5,7 @@
 cp -f /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 
 # starting nginx
-service nginx start
+service nginx stop
 
 # sigterm to terminate the first Nginx process found
-kill "$(pgrep 'nginx' | head -1)"
+# kill "$(pgrep 'nginx' | head -1)"
