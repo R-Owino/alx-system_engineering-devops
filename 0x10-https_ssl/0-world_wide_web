@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# script that configures the domain zone so that the subdomain www points to the load-balancer IP (lb-01)
+
+function display_info() {
+  local domain="$1"
+  local subdomain="$2"
+  local destination
+  if [[ -n "$subdomain" ]]; then
+    destination="$(dig +short "$subdomain.$domain" | awk 'NR==1{print $2}')"
+    record_type="$(dig +short "$subdomain.$domain" | awk 'NR==1{print $4}')"
+    echo "The subdomain $subdomain is a $record_type record and points to $destination"
+  else
+    subdomains=("www" "lb-01" "web-01" "web-02")
+    for subdomain in "${subdomains[@]}"; do
+      destination="$(dig +short "$subdomain.$domain" | awk 'NR==1{print $2}')"
+      record_type="$(dig +short "$subdomain.$domain" | awk 'NR==1{print $4}')"
+      echo "The subdomain $subdomain is a $record_type record and points to $destination"
+    done
+  fi
+}
+
+display_info "$1" "$2"
