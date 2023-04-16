@@ -16,4 +16,5 @@
 	* Web server
 	* Application server
 	* Database
-(This)[https://blvckrose.hashnode.dev/what-happens-when-you-type-googlecom-in-your-browser-and-press-enter] is the blog post I wrote.</p>
+	
+[Here](https://blvckrose.hashnode.dev/what-happens-when-you-type-googlecom-in-your-browser-and-press-enter) is the blog post I wrote.</p>
