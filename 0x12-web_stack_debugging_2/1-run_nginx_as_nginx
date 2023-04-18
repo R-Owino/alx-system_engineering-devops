@@ -11,8 +11,8 @@ sudo sed -i 's/80 default_server/8080 default_server/' /etc/nginx/sites-availabl
 sudo chown nginx:nginx /etc/nginx/nginx.conf
 
 # Restrict the nginx user from using apt-get remove
-chmod 700 /etc/nginx/nginx.conf
+chmod 755 /etc/nginx/nginx.conf
 
 # Reload and start nginx
-sudo nginx -s reload
+service nginx reload
 service nginx start
