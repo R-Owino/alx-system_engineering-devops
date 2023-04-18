@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# script that configures an environment so that Nginx is running as the nginx user
+
+# Stop nginx if it's already running
+pkill apache2
+
+# Configure nginx to listen on all active IPs on port 8080
+sudo sed -i 's/listen\s*80;/listen 8080;/g' /etc/nginx/sites-available/default
+sudo sed -i 's/listen\s*\[::\]:80;/listen [::]:8080;/g' /etc/nginx/sites-available/default
+
+# Set the nginx user and group to nginx
+sudo chown nginx:nginx /etc/nginx/nginx.conf
+
+# Restrict the nginx user from using apt-get remove
+echo 'nginx ALL=(ALL) NOPASSWD: /usr/bin/apt-get remove nginx*' | sudo tee /etc/sudoers.d/nginx
+
+# Reload and restart nginx
+service nginx reload
+service nginx reload
