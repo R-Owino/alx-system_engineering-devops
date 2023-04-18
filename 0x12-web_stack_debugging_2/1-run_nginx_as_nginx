@@ -5,8 +5,7 @@
 pkill apache2
 
 # Configure nginx to listen on all active IPs on port 8080
-sudo sed -i 's/listen\s*80;/listen 8080;/g' /etc/nginx/sites-available/default
-sudo sed -i 's/listen\s*\[::\]:80;/listen [::]:8080;/g' /etc/nginx/sites-available/default
+sudo sed -i 's/80 default_server/8080 default_server/' /etc/nginx/sites-available/default
 
 # Set the nginx user and group to nginx
 sudo chown nginx:nginx /etc/nginx/nginx.conf
