@@ -7,10 +7,10 @@ nginx_install_and_configure() {
     sudo chown -R "$USER":"$USER" /var/www/html/
     echo "Hello World!" > /var/www/html/index.html
     sudo chown -R "$USER":"$USER" /etc/nginx/sites-available/
-    redirect="\\\trewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;"
+    redirect="\\\trewrite ^/redirect_me https://rupert.id.au/python/book/learn-python3-the-hard-way-nov-15-2018.pdf permanent;"
     sudo sed -i "26i $redirect" /etc/nginx/sites-available/default
 
-    echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/404.html
+    echo "Ceci n'est pas une page" | sudo tee -a /usr/share/nginx/html/404.html
     line="\\\terror_page 404 /404.html;\n\tlocation = /404.html {\n\t\troot /usr/share/nginx/html;\n\t\tinternal;\n\t}"
     sudo sed -i "27i $line" /etc/nginx/sites-available/default
 
