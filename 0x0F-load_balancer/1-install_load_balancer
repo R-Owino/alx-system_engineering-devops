@@ -2,10 +2,26 @@
 # Install HAProxy on the load balancer
 
 apt-get -y update
-apt-get install -y haproxy
+apt-get install --no-install-recommends software-properties-common
+add-apt-repository ppa:vbernat/haproxy-2.0
+apt-get -y install haproxy=2.0.\*
+
+# Make a copy of the original config file
+sudo cp -a /etc/haproxy/haproxy.cfg{,.original_copy}
+
+# change ownership to current user
+sudo chown -R "$USER":"$USER" /etc/default/
+sudo chown -R "$USER":"$USER" /etc/haproxy/
 
 # Configure HAProxy to send traffic to web-01 and web-02
-echo "frontend http-in
+echo "defaults
+	mode http
+        timeout client 20s
+        timeout connect 15s
+        timeout server 20s
+        timeout http-request 15s
+
+frontend http-in
         bind *:80
         mode http
         default_backend webservers
@@ -13,11 +29,15 @@ echo "frontend http-in
 backend webservers
         mode http
         balance roundrobin
-        server web-01 35.153.232.94 check
-        server web-02 54.174.173.65 check" > /etc/haproxy/haproxy.cfg
+        server 127437-web-01 54.236.33.113:80 check
+        server 127437-web-02 34.207.189.181:80 check" > /etc/haproxy/haproxy.cfg
 
 # Make sure that HAProxy can be managed via an init script
-sed -i 's/#ENABLED=0/ENABLED=1/' /etc/default/haproxy
+echo "ENABLED=1" | sudo tee -a /etc/default/haproxy
 
 # Restart HAProxy service
-systemctl restart haproxy.service
+if [[ "$(pgrep -f haproxy)" ]]; then
+    sudo service haproxy restart
+else
+    sudo service haproxy start
+fi
