@@ -19,7 +19,8 @@ if __name__ == "__main__":
     # Retrieve the user's username from the response JSON
     username = user_request.get("username")
     # Send a GET request to retrieve all the todos for the user
-    todos_request = requests.get(url + "todos", params={"userId": user_id}).json()
+    todos_request = requests.get(url + "todos",
+                                 params={"userId": user_id}).json()
     # Open a new JSON file for writing
     with open("{}.json".format(user_id), "w") as jsonfile:
         # Create a dictionary to store the user's information and todos
