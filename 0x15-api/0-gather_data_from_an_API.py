@@ -28,8 +28,9 @@ if __name__ == "__main__":
                                task.get("completed")]
             completed_count = len(completed_tasks)
             # Print a summary message that includes
-	    # the employee's name and the number of completed tasks
-            print("Employee {} is done with tasks({}/{}):".format(user_name, completed_count, len(todos_request)))
+            # the employee's name and the number of completed tasks
+            print("Employee {} is done with tasks({}/{}):".format(
+                  user_name, completed_count, len(todos_request)))
             # Print the titles of all completed tasks
             for task in completed_tasks:
                 print("\t{}".format(task.get("title")))
