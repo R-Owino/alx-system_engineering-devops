@@ -1,5 +1,5 @@
 # manifest that fixes error 500 when GET method is used on Apache web server
- 
+
 exec {'/etc/php5/apache2/php.ini':
   path    => [ '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin' ],
   command => "sed -i 's/display_errors = Off/display_errors = On/g' /etc/php5/apache2/php.ini",
