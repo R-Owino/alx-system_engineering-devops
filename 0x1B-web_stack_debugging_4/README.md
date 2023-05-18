@@ -67,6 +67,7 @@ root@2fb6931a06e5:~#
 <p>We need to fix this so we get to 0 failed requests</p>
 
 <p>And when we apply the puppet manifest...</p>
+
 ```
 root@2fb6931a06e5:~# ab -c 100 -n 2000 localhost/
 This is ApacheBench, Version 2.3 <$Revision: 1528965 $>
@@ -123,4 +124,5 @@ Percentage of the requests served within a certain time (ms)
   99%    204
  100%    400 (longest request)
 ```
+
 <p>... we get 0 failed requests</p>
