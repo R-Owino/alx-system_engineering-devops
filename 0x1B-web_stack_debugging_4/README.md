@@ -1,6 +1,6 @@
 ## Web stack debugging #4
 
-- Fifth in a series of debugging tasks
+Fifth in a series of debugging tasks
 <p>In this task, we will test how well our web server setup featuring Nginx is doing under pressure. Using ApacheBench, we see that it's not doing so well: huge amount of failed requests.</p>
 <p>ApacheBench allows us to simulate HTTP requests to a web server. In this case, making 2000 requests to the web server with 100 requests at a time results in 679 failed requests</p>
 
@@ -65,3 +65,62 @@ root@2fb6931a06e5:~#
 ```
 
 <p>We need to fix this so we get to 0 failed requests</p>
+
+<p>And when we apply the puppet manifest...</p>
+```
+root@2fb6931a06e5:~# ab -c 100 -n 2000 localhost/
+This is ApacheBench, Version 2.3 <$Revision: 1528965 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking localhost (be patient)
+Completed 200 requests
+Completed 400 requests
+Completed 600 requests
+Completed 800 requests
+Completed 1000 requests
+Completed 1200 requests
+Completed 1400 requests
+Completed 1600 requests
+Completed 1800 requests
+Completed 2000 requests
+Finished 2000 requests
+
+
+Server Software:        nginx/1.4.6
+Server Hostname:        localhost
+Server Port:            80
+
+Document Path:          /
+Document Length:        612 bytes
+
+Concurrency Level:      100
+Time taken for tests:   2.634 seconds
+Complete requests:      2000
+Failed requests:        0
+Total transferred:      1706000 bytes
+HTML transferred:       1224000 bytes
+Requests per second:    759.40 [#/sec] (mean)
+Time per request:       131.683 [ms] (mean)
+Time per request:       1.317 [ms] (mean, across all concurrent requests)
+Transfer rate:          632.59 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0   15  35.8      1     198
+Processing:     1  114  60.5    101     396
+Waiting:        1  107  61.9     99     396
+Total:          2  129  56.9    102     400
+
+Percentage of the requests served within a certain time (ms)
+  50%    102
+  66%    130
+  75%    196
+  80%    197
+  90%    199
+  95%    201
+  98%    203
+  99%    204
+ 100%    400 (longest request)
+```
+<p>... we get 0 failed requests</p>
