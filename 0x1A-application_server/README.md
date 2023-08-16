@@ -1,8 +1,9 @@
 ## Application server
 
 ### Background Context
-<p>From previous projects, the web infrastructure is already serving web pages via Nginx that was installed in the [first web stack](https://github.com/R-Owino/alx-system_engineering-devops/tree/master/0x0C-web_server) project. While a web server can also serve dynamic content, this task is usually given to an application server.</p> 
-<p>In this project I will add this piece to the infrastructure, plug it to Nginx and make is serve the Airbnb clone project.</p>
+<p>From previous projects, the web infrastructure is already serving web pages via Nginx that was installed in the 
+  <a href="https://github.com/R-Owino/alx-system_engineering-devops/tree/master/0x0C-web_server">first web stack</a> project. While a web server can also serve dynamic content, this task is usually given to an application server.</p> 
+<p>In this project I will add this piece to the infrastructure, plug it into Nginx and make it serve the Airbnb clone project.</p>
 
 
 ### Resources
