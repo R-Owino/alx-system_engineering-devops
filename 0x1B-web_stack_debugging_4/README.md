@@ -163,6 +163,7 @@ root@49e40b5c9e85:~#
 ```
 
 <p> But then after the manifest with the configuration is applied, we can now login as the holberton user as follows:</p>
+
 ```
 root@49e40b5c9e85:~# su - holberton
 holberton@49e40b5c9e85:~$ head /etc/passwd
