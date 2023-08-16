@@ -1,8 +1,11 @@
 ## Web stack debugging #4
 
 Fifth in a series of debugging tasks
+
 <p>In this task, we will test how well our web server setup featuring Nginx is doing under pressure. Using ApacheBench, we see that it's not doing so well: huge amount of failed requests.</p>
+
 <p>ApacheBench allows us to simulate HTTP requests to a web server. In this case, making 2000 requests to the web server with 100 requests at a time results in 679 failed requests</p>
+
 
 ```
 root@2fb6931a06e5:~# ab -c 100 -n 2000 localhost/
