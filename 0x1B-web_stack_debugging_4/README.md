@@ -1,6 +1,8 @@
 ## Web stack debugging #4
 
-Fifth in a series of debugging tasks
+Fifth in a series of debugging tasks:
+
+### Task 1
 
 <p>In this task, we will test how well our web server setup featuring Nginx is doing under pressure. Using ApacheBench, we see that it's not doing so well: huge amount of failed requests.</p>
 
@@ -131,3 +133,48 @@ Percentage of the requests served within a certain time (ms)
 ```
 
 <p>... we get 0 failed requests</p>
+
+### Task 2
+<p> In this task, the OS configuration needs to be changed so that it is possible to login with the holberton user and open a file without any error message. Currently, this is what a user gets if s/he tries to log in with the holberton user: </p>
+
+```
+root@49e40b5c9e85:~# su - holberton
+-su: /etc/profile: Too many open files
+-su: /home/holberton/.bash_profile: Too many open files
+-su-4.3$ 
+-su-4.3$ head /etc/passwd
+-su: start_pipeline: pgrp pipe: Too many open files
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+-su-4.3$ 
+-su-4.3$ 
+-su-4.3$ logout
+-su: /home/holberton/.bash_logout: Too many open files
+-su: /etc/bash.bash_logout: Too many open files
+root@49e40b5c9e85:~# 
+```
+
+<p> But then after the manifest with the configuration is applied, we can now login as the holberton user as follows:</p>
+```
+root@49e40b5c9e85:~# su - holberton
+holberton@49e40b5c9e85:~$ head /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+holberton@49e40b5c9e85:~$ 
+```
