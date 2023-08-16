@@ -6,6 +6,8 @@ Fifth in a series of debugging tasks
 
 <p>ApacheBench allows us to simulate HTTP requests to a web server. In this case, making 2000 requests to the web server with 100 requests at a time results in 679 failed requests</p>
 
+* Remember we have to have ApacheBench installed. Since I'm using Ubuntu, this is the command I used to install it
+```apt-get install apache2-utils```
 
 ```
 root@2fb6931a06e5:~# ab -c 100 -n 2000 localhost/
