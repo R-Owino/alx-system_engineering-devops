@@ -1,1 +1,1 @@
-This repository contains the magic that is :rainbow:DevOps:rainbow:
+This repository contains the magic that is 🌈 DevOps🌈
